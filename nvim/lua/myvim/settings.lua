@@ -24,8 +24,10 @@ g.clipboard = {
 	cache_enabled = 0,
 }
 o.colorcolumn = "80"
-o.complete = vim.opt.complete + "kspell"
-o.completeopt = { "menuone", "noinsert", "noselect" }
+o.complete = ".,w,b,o"
+o.completeopt = "menuone,noselect,fuzzy"
+o.autocomplete = true
+o.autocompletedelay = 250
 o.conceallevel = 2
 o.cursorcolumn = true
 o.cursorline = true
