@@ -14,14 +14,19 @@ o.clipboard = { "unnamed", "unnamedplus" }
 g.clipboard = {
 	name = "wl-clipboard",
 	copy = {
-		["+"] = "wl-copy",
-		["*"] = "wl-copy",
+		["+"] = "wl-copy --foreground --type text/plain",
+		["*"] = "wl-copy --foreground --primary --type text/plain",
 	},
 	paste = {
-		["+"] = "wl-paste",
-		["*"] = "wl-paste",
+		["+"] = function()
+			-- The '1' as the third argument to systemlist preserves the final newline
+			return vim.fn.systemlist("wl-paste --no-newline | sed -e 's/\\r$//'", {}, 1)
+		end,
+		["*"] = function()
+			return vim.fn.systemlist("wl-paste --primary --no-newline | sed -e 's/\\r$//'", {}, 1)
+		end,
 	},
-	cache_enabled = 0,
+	cache_enabled = true,
 }
 o.colorcolumn = "80"
 o.complete = ".,w,b,o"
