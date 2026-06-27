@@ -82,6 +82,7 @@ o.undofile = true
 o.undodir = vim.fn.stdpath("config") .. "/undo"
 o.updatetime = 500
 o.wildmode = "list:longest"
+o.winborder = "rounded"
 o.wrap = false
 o.wrapmargin = 0
 
