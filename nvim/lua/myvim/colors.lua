@@ -25,3 +25,22 @@ vim.api.nvim_command("hi clear SpellRare")
 vim.api.nvim_command("hi! SpellBad cterm=undercurl ctermfg=LightRed guisp=LightRed gui=undercurl guifg=LightRed")
 vim.api.nvim_command("hi! SpellCap cterm=undercurl ctermfg=LightRed guisp=LightRed gui=undercurl guifg=LightRed")
 vim.api.nvim_command("hi! SpellRare cterm=undercurl ctermfg=LightRed guisp=LightRed gui=undercurl guifg=LightRed")
+
+--mini.tabline
+vim.api.nvim_set_hl(0, "MiniTablineVisible", { fg = "#606070", bg = "#202020" })
+vim.api.nvim_set_hl(0, "MiniTablineCurrent", { fg = "#00DDDD", bg = "#202020" })
+vim.api.nvim_set_hl(0, "MiniTablineModifiedVisible", { fg = "#976300", bg = "#202020" })
+vim.api.nvim_set_hl(0, "MiniTablineModifiedHidden", { fg = "#8E5D00", bg = "#202020" })
+vim.api.nvim_set_hl(0, "MiniTablineModifiedCurrent", { fg = "#DD9100", bg = "#202020" })
+
+--mini.statusline
+vim.api.nvim_set_hl(0, "MiniStatuslineModeNormal", { fg = "#50DD6A", bg = "#202020" })
+vim.api.nvim_set_hl(0, "MiniStatuslineModeInsert", { fg = "#5080DD", bg = "#202020" })
+vim.api.nvim_set_hl(0, "MiniStatuslineModeVisual", { fg = "#DD00DD", bg = "#202020" })
+vim.api.nvim_set_hl(0, "MiniStatuslineModeReplace", { fg = "#DD4040", bg = "#202020" })
+vim.api.nvim_set_hl(0, "MiniStatuslineModeCommand", { fg = "#CCCCDD", bg = "#202020" })
+vim.api.nvim_set_hl(0, "MiniStatuslineFilename", { fg = "#CCCCDD", bg = "#202020" })
+vim.api.nvim_set_hl(0, "MiniStatuslineFileinfo", { fg = "#CCCCDD", bg = "#202020" })
+vim.api.nvim_set_hl(0, "MiniStatuslineDiagnostics", { fg = "#DD4040", bg = "#202020" })
+vim.api.nvim_set_hl(0, "MiniStatuslineGit", { fg = "#50DD6A", bg = "#202020" })
+vim.api.nvim_set_hl(0, "MiniStatuslineLocation", { fg = "#CCCCDD", bg = "#202020" })
