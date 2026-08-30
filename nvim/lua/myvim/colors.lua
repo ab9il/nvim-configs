@@ -5,7 +5,7 @@ vim.api.nvim_command("hi! Comment gui=NONE guifg=NONE guibg=NONE cterm=NONE cter
 vim.api.nvim_command("hi! Search gui=NONE guifg=NONE guibg=NONE cterm=NONE ctermfg=NONE ctermbg=NONE")
 vim.api.nvim_command("hi EndOfBuffer guifg=NONE guibg=NONE ctermbg=NONE ctermfg=NONE")
 vim.api.nvim_set_option("background", "dark")
-vim.api.nvim_command("colorscheme material")
+vim.api.nvim_command("colorscheme catppuccin")
 vim.api.nvim_command("hi clear LineNr")
 vim.api.nvim_command("hi clear SignColumn")
 vim.api.nvim_command("hi! link markdownItalic Italic")
