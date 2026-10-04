@@ -118,8 +118,6 @@ keymap('n', '<C-w>t', ':terminal<CR>', opts)
 keymap('n', ',q', ':q!<CR>', opts)
 
 -- Automatically close brackets, parethesis, and quotes
-keymap('i', " '", " ''<left>", opts)
-keymap('i', '"', '""<left>', opts)
 keymap('i', '(', '()<left>', opts)
 keymap('i', '[', '[]<left>', opts)
 keymap('i', '{', '{}<left>', opts)
