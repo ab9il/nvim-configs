@@ -101,6 +101,12 @@ vim.g.netrw_banner = 0
 vim.g.netrw_winsize = 25
 vim.g.netrw_liststyle = 3
 
+-- disable Node provider
+vim.g.loaded_node_provider = 0
+
+-- disable Perl provider
+vim.g.loaded_perl_provider = 0
+
 -- Python version
 vim.g.python3_host_prog = "/usr/bin/python3"
 

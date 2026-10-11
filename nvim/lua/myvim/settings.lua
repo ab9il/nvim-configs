@@ -102,6 +102,9 @@ o.breakindent = true
 o.number = true
 o.signcolumn = "yes"
 
+-- disable Node provider
+g.loaded_node_provider = 0
+
 --disable Perl provider
 g.loaded_perl_provider = 0
 
