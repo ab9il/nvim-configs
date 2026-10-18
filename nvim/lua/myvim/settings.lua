@@ -166,14 +166,18 @@ autocmd(
 	{ "BufNewFile", "BufRead" },
 	{ pattern = { "conf", "config", "*.conf", "*.log", "*rc", "*.rc", "*.strm", "*.xspf" }, command = "set ft=config" }
 )
--- Highlight on yank
-augroup("YankHighlight", { clear = true })
-autocmd("TextYankPost", {
-	group = "YankHighlight",
-	callback = function()
-		vim.hl.on_yank({
-			higroup = (vim.fn["hlexists"]("HighlightedyankRegion") > 0 and "HighlightedyankRegion" or "IncSearch"),
-			timeout = "200",
-		})
-	end,
+-- custom highlight on yank
+local function set_yank_highlight()
+    vim.api.nvim_set_hl(0, "YankHighlight", { bg = "#9CE342", default = true })
+end
+set_yank_highlight()
+vim.api.nvim_create_autocmd("ColorScheme", {
+    callback = set_yank_highlight,
+})
+vim.api.nvim_create_autocmd("TextYankPost", {
+    desc = "Highlight when yanking (copying) text",
+    group = vim.api.nvim_create_augroup("kickstart-highlight-yank", { clear = true }),
+    callback = function()
+        vim.hl.hl_op({ higroup = "YankHighlight", timeout = 200 })
+    end,
 })
