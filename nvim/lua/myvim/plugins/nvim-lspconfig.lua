@@ -20,6 +20,7 @@ return {
         vim.lsp.config("harper_ls", {
             settings = {
                 ["harper-ls"] = {
+                    userDictPath = "~/.config/harper-ls/dict.txt",
                     linters = {
                         SentenceCapitalization = false,
                         SpellCheck = false,
@@ -37,6 +38,14 @@ return {
                 },
             },
         })
-        vim.lsp.enable({ "harper_ls" })
+        vim.lsp.enable({ "bashls", "harper_ls", "lua_ls", "markdown_oxide", "pyright", "taplo", "ts_ls", "yamlls" })
+        vim.api.nvim_create_autocmd("LspAttach", {
+            callback = function(ev)
+                local client = vim.lsp.get_client_by_id(ev.data.client_id)
+                if client ~= nil and client:supports_method("textDocument/completion") then
+                    vim.lsp.completion.enable(true, client.id, ev.buf, { autotrigger = true })
+                end
+            end,
+        })
     end,
 }

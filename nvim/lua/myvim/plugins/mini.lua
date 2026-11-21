@@ -65,7 +65,6 @@ return {
         require("mini.pick").setup({})
         require("mini.snippets").setup({})
         require("mini.statusline").setup({})
-        require("mini.statuscolumn").setup({})
         require("mini.surround").setup({})
         require("mini.tabline").setup({})
         -- for statusline

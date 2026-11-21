@@ -1,28 +1,25 @@
---Set leader key
-vim.api.nvim_set_keymap("", "<Space>", "<Nop>", { noremap = true, silent = true })
-vim.g.mapleader = " "
-vim.g.maplocalleader = " "
-
---General Settings
+require("vim._core.ui2").enable()
+vim.opt.autoread = true
 vim.opt.backup = false
-vim.opt.clipboard = { "unnamed", "unnamedplus" }
+vim.opt.clipboard = "unnamedplus"
 vim.g.clipboard = {
-	name = "wl-clipboard",
-	copy = {
-		["+"] = "wl-copy --foreground --type text/plain",
-		["*"] = "wl-copy --foreground --primary --type text/plain",
-	},
-	paste = {
-		["+"] = function()
-			-- The '1' as the third argument to systemlist preserves the final newline
-			return vim.fn.systemlist("wl-paste --no-newline | sed -e 's/\\r$//'", {}, 1)
-		end,
-		["*"] = function()
-			return vim.fn.systemlist("wl-paste --primary --no-newline | sed -e 's/\\r$//'", {}, 1)
-		end,
-	},
-	cache_enabled = true,
+    name = "wl-clipboard",
+    copy = {
+        ["+"] = "wl-copy --foreground --type text/plain",
+        ["*"] = "wl-copy --foreground --primary --type text/plain",
+    },
+    paste = {
+        ["+"] = function()
+            -- The '1' as the third argument to systemlist preserves the final newline
+            return vim.fn.systemlist("wl-paste --no-newline | sed -e 's/\\r$//'", {}, 1)
+        end,
+        ["*"] = function()
+            return vim.fn.systemlist("wl-paste --primary --no-newline | sed -e 's/\\r$//'", {}, 1)
+        end,
+    },
+    cache_enabled = true,
 }
+vim.opt.cmdheight = 0
 vim.opt.colorcolumn = "80"
 vim.opt.complete = ".,w,b,o"
 vim.opt.completeopt = "menuone,noselect,fuzzy"
@@ -34,16 +31,16 @@ vim.opt.cursorline = true
 vim.opt.encoding = "utf-8"
 vim.opt.expandtab = true
 vim.opt.fillchars = {
-	diff = " ",
-	eob = " ",
-	fold = " ",
-	horiz = "━",
-	horizup = "┻",
-	horizdown = "┳",
-	vert = "┃",
-	vertleft = "┫",
-	vertright = "┣",
-	verthoriz = "╋",
+    diff = " ",
+    eob = " ",
+    fold = " ",
+    horiz = "━",
+    horizup = "┻",
+    horizdown = "┳",
+    vert = "┃",
+    vertleft = "┫",
+    vertright = "┣",
+    verthoriz = "╋",
 }
 vim.opt.hidden = true
 vim.opt.history = 500
@@ -54,7 +51,6 @@ vim.opt.incsearch = true
 vim.opt.laststatus = 3
 vim.opt.listchars = { tab = "▸ ", trail = "·" }
 vim.opt.mouse = "a"
---vim.opt.pastetoggle='<F2>'
 vim.opt.path = vim.opt.path + ".,**"
 vim.opt.ruler = true
 vim.opt.scrolloff = 8
@@ -63,7 +59,6 @@ vim.opt.shiftwidth = 4
 vim.opt.showmode = false
 vim.opt.shortmess = vim.opt.shortmess + "c"
 vim.opt.showtabline = 1
-vim.opt.sidescrolloff = 8
 vim.opt.smartcase = true
 vim.opt.smarttab = true
 vim.opt.softtabstop = 4
@@ -78,6 +73,7 @@ vim.opt.undofile = true
 vim.opt.undodir = vim.fn.stdpath("config") .. "/undo"
 vim.opt.updatetime = 500
 vim.opt.wildmode = "list:longest"
+vim.opt.winborder = "rounded"
 vim.opt.wrap = false
 vim.opt.wrapmargin = 0
 
@@ -88,6 +84,7 @@ vim.opt.shiftround = true
 vim.opt.shiftwidth = 4
 vim.opt.smartindent = true
 vim.opt.swapfile = false
+vim.opt.tabstop = 4
 vim.opt.undofile = true
 
 -- window-local
@@ -96,16 +93,11 @@ vim.opt.breakindent = true
 vim.opt.number = true
 vim.opt.signcolumn = "yes"
 
---netrw
-vim.g.netrw_banner = 0
-vim.g.netrw_winsize = 25
-vim.g.netrw_liststyle = 3
-
--- disable Node provider
-vim.g.loaded_node_provider = 0
-
--- disable Perl provider
+--disable Perl provider
 vim.g.loaded_perl_provider = 0
+
+--disable Ruby provider
+vim.g.loaded_ruby_provider = 0
 
 -- Python version
 vim.g.python3_host_prog = "/usr/bin/python3"

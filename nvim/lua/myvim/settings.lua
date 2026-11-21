@@ -3,6 +3,9 @@ local o = vim.opt
 local augroup = vim.api.nvim_create_augroup
 local autocmd = vim.api.nvim_create_autocmd
 
+-- set interface v2
+require("vim._core.ui2").enable()
+
 --Set leader key
 vim.api.nvim_set_keymap("", "<Space>", "<Nop>", { noremap = true, silent = true })
 g.mapleader = " "
@@ -10,23 +13,23 @@ g.maplocalleader = " "
 
 --General Settings
 o.backup = false
-o.clipboard = { "unnamed", "unnamedplus" }
+o.clipboard = "unnamedplus"
 g.clipboard = {
-	name = "wl-clipboard",
-	copy = {
-		["+"] = "wl-copy --foreground --type text/plain",
-		["*"] = "wl-copy --foreground --primary --type text/plain",
-	},
-	paste = {
-		["+"] = function()
-			-- The '1' as the third argument to systemlist preserves the final newline
-			return vim.fn.systemlist("wl-paste --no-newline | sed -e 's/\\r$//'", {}, 1)
-		end,
-		["*"] = function()
-			return vim.fn.systemlist("wl-paste --primary --no-newline | sed -e 's/\\r$//'", {}, 1)
-		end,
-	},
-	cache_enabled = true,
+    name = "wl-clipboard",
+    copy = {
+        ["+"] = "wl-copy --foreground --type text/plain",
+        ["*"] = "wl-copy --foreground --primary --type text/plain",
+    },
+    paste = {
+        ["+"] = function()
+            -- The '1' as the third argument to systemlist preserves the final newline
+            return vim.fn.systemlist("wl-paste --no-newline | sed -e 's/\\r$//'", {}, 1)
+        end,
+        ["*"] = function()
+            return vim.fn.systemlist("wl-paste --primary --no-newline | sed -e 's/\\r$//'", {}, 1)
+        end,
+    },
+    cache_enabled = true,
 }
 o.colorcolumn = "80"
 o.complete = ".,w,b,o"
@@ -39,16 +42,16 @@ o.cursorline = true
 o.encoding = "utf-8"
 o.expandtab = true
 o.fillchars = {
-	diff = " ",
-	eob = " ",
-	fold = " ",
-	horiz = "━",
-	horizup = "┻",
-	horizdown = "┳",
-	vert = "┃",
-	vertleft = "┫",
-	vertright = "┣",
-	verthoriz = "╋",
+    diff = " ",
+    eob = " ",
+    fold = " ",
+    horiz = "━",
+    horizup = "┻",
+    horizdown = "┳",
+    vert = "┃",
+    vertleft = "┫",
+    vertright = "┣",
+    verthoriz = "╋",
 }
 o.hidden = true
 o.history = 500
@@ -102,11 +105,11 @@ o.breakindent = true
 o.number = true
 o.signcolumn = "yes"
 
--- disable Node provider
-g.loaded_node_provider = 0
-
 --disable Perl provider
 g.loaded_perl_provider = 0
+
+--disable Ruby provider
+g.loaded_ruby_provider = 0
 
 -- Python version
 g.python3_host_prog = "/usr/bin/python3"
@@ -125,47 +128,48 @@ g.netrw_winsize = 25
 --general config commands
 -- remove trailing whitespaces
 autocmd("BufWritePre", {
-	pattern = "*",
-	command = ":%s/\\s\\+$//e",
+    pattern = "*",
+    command = ":%s/\\s\\+$//e",
 })
 -- Run xrdb whenever Xdefaults or Xresources are updated.
 autocmd("BufWritePost", {
-	pattern = "X{resources,defaults}",
-	command = ":silent !xrdb %",
+    pattern = "X{resources,defaults}",
+    command = ":silent !xrdb %",
 })
 -- Update binds when sxhkdrc is updated.
 autocmd("BufWritePost", {
-	pattern = "*sxhkdrc",
-	command = ":!pkill -USR1 sxhkd",
+    pattern = "*sxhkdrc",
+    command = ":!pkill -USR1 sxhkd",
 })
 -- Set filetype syntax and behavior
 autocmd({ "BufNewFile", "BufRead" }, {
-	pattern = {
-		"*.markdown",
-		"*.mdown",
-		"*.mkd",
-		"*.mdwn",
-		"*.md",
-		"*-outline",
-		"*-manuscript",
-	},
-	command = "set ft=markdown wrap linebreak nolist",
+    pattern = {
+        "*.markdown",
+        "*.mdown",
+        "*.mkd",
+        "*.mdwn",
+        "*.md",
+        "*-outline",
+        "*-manuscript",
+    },
+    command = "set ft=markdown wrap linebreak nolist",
 })
 autocmd(
-	{ "BufNewFile", "BufRead" },
-	{ pattern = { "*.txt", "*.text", "*.log" }, command = "set ft=text wrap linebreak nolist" }
+    { "BufNewFile", "BufRead" },
+    { pattern = { "*.txt", "*.text", "*.log" }, command = "set ft=text wrap linebreak nolist" }
 )
 autocmd({ "BufNewFile", "BufRead" }, {
-	pattern = {
-		"*.htm",
-		"*.html",
-	},
-	command = "filetype plugin indent on",
+    pattern = {
+        "*.htm",
+        "*.html",
+    },
+    command = "filetype plugin indent on",
 })
 autocmd(
-	{ "BufNewFile", "BufRead" },
-	{ pattern = { "conf", "config", "*.conf", "*.log", "*rc", "*.rc", "*.strm", "*.xspf" }, command = "set ft=config" }
+    { "BufNewFile", "BufRead" },
+    { pattern = { "conf", "config", "*.conf", "*.log", "*rc", "*.rc", "*.strm", "*.xspf" }, command = "set ft=config" }
 )
+
 -- custom highlight on yank
 local function set_yank_highlight()
     vim.api.nvim_set_hl(0, "YankHighlight", { bg = "#9CE342", default = true })
